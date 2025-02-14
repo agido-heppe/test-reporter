@@ -149,7 +149,7 @@ function getTestRunsReport(testRuns: TestRunResult[], options: ReportOptions): s
     sections.push(` `)
   }
 
-  if (testRuns.length > 0 && !options.onlySummary) {
+  if (testRuns.length > 0 && options.onlySummary) {
     const tableData = testRuns
       .filter(tr => tr.passed > 0 || tr.failed > 0 || tr.skipped > 0)
       .map(tr => {
