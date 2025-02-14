@@ -149,7 +149,7 @@ function getTestRunsReport(testRuns: TestRunResult[], options: ReportOptions): s
     sections.push(` `)
   }
 
-  if (testRuns.length > 0 || options.onlySummary) {
+  if (testRuns.length > 0 && !options.onlySummary) {
     const tableData = testRuns
       .filter(tr => tr.passed > 0 || tr.failed > 0 || tr.skipped > 0)
       .map(tr => {
@@ -184,7 +184,7 @@ function getSuitesReport(tr: TestRunResult, runIndex: number, options: ReportOpt
   const sections: string[] = []
   const suites = options.listSuites === 'failed' ? tr.failedSuites : tr.suites
 
-  if (options.listSuites !== 'none') {
+  if (options.listSuites === 'failed') {
     const trSlug = makeRunSlug(runIndex)
     const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`
     const icon = getResultIcon(tr.result)
