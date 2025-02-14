@@ -184,7 +184,7 @@ function getSuitesReport(tr: TestRunResult, runIndex: number, options: ReportOpt
   const sections: string[] = []
   const suites = options.listSuites === 'failed' ? tr.failedSuites : tr.suites
 
-  if (options.listSuites === 'failed') {
+  if (options.listSuites === tr.result) {
     const trSlug = makeRunSlug(runIndex)
     const nameLink = `<a id="${trSlug.id}" href="${options.baseUrl + trSlug.link}">${tr.path}</a>`
     const icon = getResultIcon(tr.result)
